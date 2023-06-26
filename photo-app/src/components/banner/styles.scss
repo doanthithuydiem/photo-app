@@ -1,0 +1,16 @@
+.banner {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+
+  background-image: url(../../assets/images/baner.webp);
+  background-position: center;
+  background-size: cover;
+
+  &__titlt {
+    color: aliceblue;
+    font-weight: bold;
+  }
+}
