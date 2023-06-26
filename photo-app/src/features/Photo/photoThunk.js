@@ -60,3 +60,5 @@ export const deletePhoto = createAsyncThunk (
   }
 )
 
+
+//làm thêm case delete ở trên

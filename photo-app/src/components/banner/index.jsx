@@ -8,7 +8,7 @@ Banner.proptype = {
 };
 Banner.defaultProps = {
   title: "",
-  backgroundUrl: "../../assets/images",
+  backgroundUrl: "",
 };
 
 function Banner(props){
@@ -20,7 +20,7 @@ function Banner(props){
     
   return (
     <section className="banner" style={bannerStyle}>
-      <h1 className="baner__title">{title}</h1>
+      <h1 className="banner__title">{title}</h1>
     </section>
   );
 }

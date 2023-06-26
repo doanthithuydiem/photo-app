@@ -2,56 +2,33 @@ import React, { useEffect } from "react";
 import Banner from "../../../../components/banner";
 import PhotoForm from "../../components/PhotoForm";
 import "./styles.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 
 
-AddEditPage.proptype = {};
+AddEditPage.propTypes = {};
 function AddEditPage(props) {
-   const dispatch = useDispatch();
-   const navigate = useNavigate();
+  const initialValues = {
+    title: "",
+    categoryId: null,
+    photo: "",
+  }
+  // initialValues phải check điều kiện để biết đâu là edit đâu là add
 
-   const photos = useSelector((state) => state.photoReducer.photos);
-
-   useEffect(() => {
-    if (photos.lenght === 0) {
-      dispatch(getListPhoto());
-    }
-   }, [dispatch, photos.lenght]);
-
-   const { photoId } = useParams();
-   const isAddMode = !photoId;
-   const photoEdit = photos.find((photo) => photo.id === photoId);
-   const initialValues = isAddMode
-    ? {
-        title: "",
-        catagoryId: null,
-        photo: "",
-      }
-    : photoEdit;
-   
-   const handleSubmit = (values) => {
-    if (isAddMode) {
-      const action = postPhoto(values);
-      dispatch(action);
-   } else {
-      const action = editPhoto(values);
-      dispatch(action);
-   }
-   navigate ("/");
-};
-return (
-  <div className="photo-edit">
-    <Banner titlt="" />
-    <div className="photo-edit__form">
-      <PhotoForm 
-        idAddMode={isAddMode}
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-      />
+  const handleSubmit = (values) => {
+    console.log(values);
+    // viết code check điều kiện để goi photo thunk add hoặc edit ở đây
+  };
+  return (
+    <div className="photo-edit">
+      <Banner title="Create your photo" />
+      <div className="photo-edit__form">
+        <PhotoForm
+          // sau khi check idAddMode truyền thêm idAddMode vào đây
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default AddEditPage; 

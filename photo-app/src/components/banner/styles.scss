@@ -8,8 +8,9 @@
   background-image: url(../../assets/images/baner.webp);
   background-position: center;
   background-size: cover;
+  border: 1px solid;
 
-  &__titlt {
+  &__title {
     color: aliceblue;
     font-weight: bold;
   }

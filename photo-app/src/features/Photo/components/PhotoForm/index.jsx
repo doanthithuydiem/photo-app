@@ -1,9 +1,7 @@
 import PropType from "prop-types";
 import React from "react";
-import Select from "react-select";
-import { FormGroup, Button, Label, Input, Spinner } from "reactstrap";
+import { FormGroup, Button, Spinner } from "reactstrap";
 import { PHOTO_CATEGORY_OPTIONS } from "../../../../constants/global";
-import Images from "../../../../constants/images";
 import * as Yup from "yup";
 import { FastField, Form, Formik } from "formik";
 import InputField from "../../../../custom-fields/inputField";
@@ -19,15 +17,12 @@ PhotoForm.defaultProps = {
   onSubmit: null,
 };
 
-function PhotoForm (props) {
+function PhotoForm(props) {
   const { isAddMode, initialValues, onSubmit } = props;
-
-  if (!initialValues) return null;
-
   const validationSchema = Yup.object({
-    title: Yup.string().isRequired("This field is required"),
-    categoryId: Yup.number().isRequired("This field is required"),
-    photo: Yup.string().isRequired("This field is required"),
+    title: Yup.string().required("This field is required"),
+    categoryId: Yup.number().required("This field is required"),
+    photo: Yup.string().required("This field is required"),
   });
 
   return (
@@ -39,6 +34,7 @@ function PhotoForm (props) {
       {(formikProps) => {
         const { isSubmitting } = formikProps;
         return (
+          // làm thêm bắt validate cho 3 customFiled  (InputField, selectField, RandomPhotoField)
           <Form>
             <FastField
               name="title"
@@ -47,15 +43,15 @@ function PhotoForm (props) {
               placeholder="Eg: wow nature ..."
             />
 
-            <FastField 
-              name="catagoryId"
+            <FastField
+              name="categoryId"
               component={selectField}
-              label="catagory"
+              label="category"
               placeholder="what's your photo category?"
               options={PHOTO_CATEGORY_OPTIONS}
             />
-            
-            <FastField 
+
+            <FastField
               name="photo"
               component={RandomPhotoField}
               label="photo"
@@ -69,7 +65,7 @@ function PhotoForm (props) {
             </FormGroup>
           </Form>
         );
-      }}  
+      }}
     </Formik>
   );
 }
