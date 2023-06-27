@@ -1,7 +1,7 @@
-import bannerBackgrround from "../assets/images/baner.webp";
+import bannerBackground from "../assets/images/baner.webp";
 
 const Images = {
-    BANNER_BG: bannerBackgrround
+    BANNER_BG: bannerBackground
 };
 
 export default Images;

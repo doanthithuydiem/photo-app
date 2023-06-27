@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import photos from "./../../constants/mockData";
+import { getListPhoto } from "./photoThunk";
 
 const photoSlice = createSlice({
   name: "photo",
-  initialState: photos,
+  initialState: {
+    photos: [],
+    isLoading: false,
+  },
   reducers: {
+    // chỗ này để viết các action không liên quan tới API
     addPhoto: (state, action) => {
       state.push(action.payload);
     },
@@ -20,13 +25,22 @@ const photoSlice = createSlice({
       }
     },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(getListPhoto.fulfilled, (state, action) => {
-
-  //     })
-  // }
+  extraReducers: (builder) => {
+     // chỗ này để viết các trạng thái cho action có sử dụng API
+    builder
+    .addCase(getListPhoto.fulfilled, (state, action) => {
+      state.photos = action.payload;
+      state.isLoading = false;
+    })
+    .addCase(getListPhoto.pending, (state, action) => {
+      state.isLoading = true;
+    })
+    .addCase(getListPhoto.rejected, (state, action) => {
+      state.isLoading = false;
+    })
+    //xử lí thêm case delete từ photoThunk truyền sang
+  }
 });
 const { actions, reducer } = photoSlice;
-export const { addPhoto, removePhoto, editPhoto } = actions;
+export const { addPhoto, removePhoto, editPhoto } = actions; // dòng này để export các action từ reducers
 export default reducer
