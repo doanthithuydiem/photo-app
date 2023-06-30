@@ -3,14 +3,16 @@ import { Container, Col, Row } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import "./style.scss";
 
+Header.propTypes = {};
+
 function Header() {
   return (
     <header className="header">
       <Container>
-        <Row className="content">
+        <Row className="justify-content-between">
           <Col xs="auto">
             <a
-              className="header_link"
+              className="header__link header__titile"
               href="https://vtiacademy.edu.vn/"
               target="_blank"
               rel="noopener noreferrer"
@@ -21,8 +23,8 @@ function Header() {
           <Col xs="auto">
             <NavLink
               exact="true"
-              className="header_link"
-              activeClassName="header_link_active"
+              className="header__link"
+              activeClassName="header__link--active"
               to="/"
             >
               Redux Project

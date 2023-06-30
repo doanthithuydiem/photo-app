@@ -1,4 +1,4 @@
-import PropType from "prop-types";
+import PropTypes from "prop-types";
 import React from "react";
 import { FormGroup, Button, Spinner } from "reactstrap";
 import { PHOTO_CATEGORY_OPTIONS } from "../../../../constants/global";
@@ -9,8 +9,8 @@ import selectField from "../../../../custom-fields/selectField";
 import RandomPhotoField from "../../../../custom-fields/randomPhotoField";
 
 
-PhotoForm.propotype = {
-  onSubmit: PropType.func
+PhotoForm.propTypes = {
+  onSubmit: PropTypes.func,
 };
 
 PhotoForm.defaultProps = {
@@ -19,6 +19,8 @@ PhotoForm.defaultProps = {
 
 function PhotoForm(props) {
   const { isAddMode, initialValues, onSubmit } = props;
+  if (!initialValues) return null;
+  
   const validationSchema = Yup.object({
     title: Yup.string().required("This field is required"),
     categoryId: Yup.number().required("This field is required"),
