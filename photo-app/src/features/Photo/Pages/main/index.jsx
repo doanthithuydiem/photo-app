@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import Banner from "../../../../components/banner";
 import { useNavigate } from "react-router-dom";
 import Images from "../../../../constants/images";
-import { Button } from "reactstrap";
+import { Button, Container, Spinner } from "reactstrap";
 import PhotoList from "../../components/PhotoList";
 import { useDispatch, useSelector } from "react-redux";
-import { getListPhoto } from "../../photoThunk";
+import { deletePhoto, getListPhoto } from "../../photoThunk";
+import "./styles.scss";
+
+MainPage.propTypes = {};
 
 function MainPage() {
     const photos = useSelector((state) => state.photoReducer.photos);
+    const isLoading = useSelector((state) => state.photoReducer.isLoading);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const toPageAdd = (photo) => {
@@ -17,28 +21,41 @@ function MainPage() {
 
     const handleRemove = (photo) => {
         // viet code gọi photothunk delete
-        console.log(photo);
+        const action = deletePhoto(photo.id);
+        dispatch(action);
     };
+
     const handleEdit = (photo) => {
         // viet code chuyen qua trang edit
-        console.log(photo);
+        navigate(`/photo/${photo.id}`);
     };
+
     useEffect(() => {
         dispatch(getListPhoto());
     }, []);
+
     return (<div className="photo-main">
         <Banner title="🎉 Your awesome photos 🎉"
             backgroundUrl={Images.BANNER_BG} />
-
-        <Button onClick={toPageAdd} color="info">
-            Add New Photo
-        </Button>
+        
+        <Container className="text-center">
+            <div className="box-link">
+                <Button onClick={toPageAdd} color="info">
+                    Add New Photo
+                </Button>
+            </div>    
         {/* // xem lai chỗ này để lấy isLoading từ store về check điều kiên hiển thị spinner khi chưa call API xong */}
-        <PhotoList
+        {isLoading ? (
+            <Spinner />
+        ) : (
+            <PhotoList
             photoList={photos}
             onPhotoEditClick={handleEdit}
             onPhotoRemoveClick={handleRemove}
-        />
-    </div>);
+            />
+        )}
+        </Container>
+    </div>
+    );
 }
 export default MainPage;

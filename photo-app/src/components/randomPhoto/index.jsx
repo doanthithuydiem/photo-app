@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 import "./styles.scss";
 
-RandomPhoto.propTyes = {
+RandomPhoto.propTypes = {
     name: PropTypes.string,
     imageUrl: PropTypes.string,
     onImageUrlChange: PropTypes.func,

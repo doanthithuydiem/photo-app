@@ -1,12 +1,12 @@
 import React from "react";
 import { useResolvedPath } from "react-router-dom";
 
-Card.propTypes = {};
+Cart.propTypes = {};
 
-function Card(props) {
+function Cart(props) {
   const match = useResolvedPath("").pathname;
 
   return <div> cart page</div>;
 }
 
-export default Card;
+export default Cart;

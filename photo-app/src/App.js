@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={ <Photo />}  />
             <Route path="/photos/add" element={ <AddEditPage/>}  />
-            <Route path="/photos/:photosId" element={ <AddEditPage/>}  />
+            <Route path="/photo/:photosId" element={ <AddEditPage/>}  />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>   

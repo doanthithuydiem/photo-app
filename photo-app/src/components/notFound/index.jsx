@@ -1,10 +1,9 @@
 import React from "react";
-function NotFound (){
-    return (
-        <div>
-            <h1>Not Found Page</h1>
-        </div>
-    )
+
+NotFound.propTypes = {};
+
+function NotFound(){
+    return <div>Not Found Page</div>;
 }
 
 export default NotFound;

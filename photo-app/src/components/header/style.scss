@@ -1,12 +1,18 @@
 .header {
 	padding: 10px;
-	&_link {
+	font-size: 1rem;
+
+	&__link {
 		color: black;
 		text-decoration: none;
-		&_active,
+		&--active,
 		&:hover {
-			text-decoration: underline;
+			text-decoration: none;
 			color: chocolate;
+		}
+
+		&__title{
+			font-weight: bold;
 		}
 
 	}
